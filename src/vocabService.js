@@ -43,7 +43,7 @@ let cachedPromise = null
 
 export function getWeeklyWords() {
   if (!cachedPromise) {
-    cachedPromise = fetch('/dictionary.json')
+    cachedPromise = fetch(`${import.meta.env.BASE_URL}dictionary.json`)
       .then(res => res.json())
       .then(dictionary => {
         const allWords = Object.entries(dictionary)
