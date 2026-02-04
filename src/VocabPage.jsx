@@ -61,17 +61,9 @@ function VocabPage({ words }) {
     return monday.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
   }
 
-  const sortedWords = [...words].sort((a, b) => {
-    const aFav = favorites.includes(a.word)
-    const bFav = favorites.includes(b.word)
-    if (aFav && !bFav) return -1
-    if (!aFav && bFav) return 1
-    return 0
-  })
-
   const displayWords = showFavoritesOnly
-    ? sortedWords.filter(w => favorites.includes(w.word))
-    : sortedWords
+    ? words.filter(w => favorites.includes(w.word))
+    : words
 
   return (
     <div className="app">
