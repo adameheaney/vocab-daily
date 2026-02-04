@@ -117,6 +117,20 @@ function VocabPage({ words }) {
                         <span className="pos">{item.pos}</span>
                         {formatDefinition(item.definition)}
                       </div>
+                      {item.examples && item.examples.length > 0 && (
+                        <div className="examples">
+                          <h4 className="section-label">Examples</h4>
+                          {item.examples.map((ex, i) => (
+                            <p key={i} className="example-sentence">{ex}</p>
+                          ))}
+                        </div>
+                      )}
+                      {item.metaphor && (
+                        <div className="metaphor">
+                          <h4 className="section-label">Metaphor</h4>
+                          <p className="metaphor-sentence">{item.metaphor}</p>
+                        </div>
+                      )}
                     </motion.div>
                   )}
                 </AnimatePresence>

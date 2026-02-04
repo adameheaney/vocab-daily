@@ -5,7 +5,9 @@
       "Bash(node -e:*)",
       "Bash(node:*)",
       "Bash(npx vite build:*)",
-      "Bash(powershell -Command:*)"
+      "Bash(powershell -Command:*)",
+      "Bash(python3:*)",
+      "Bash(tree:*)"
     ]
   }
 }

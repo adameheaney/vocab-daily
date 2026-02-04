@@ -165,6 +165,54 @@ html {
   margin-bottom: 0;
 }
 
+/* Section labels (Examples, Metaphor) */
+.section-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #999;
+  margin-bottom: 0.375rem;
+}
+
+/* Examples section */
+.examples {
+  padding: 0 0 0.875rem;
+  border-top: 1px solid #f0f0f0;
+  margin-top: 0.25rem;
+  padding-top: 0.75rem;
+}
+
+.example-sentence {
+  color: #555;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  margin-bottom: 0.375rem;
+  padding-left: 0.75rem;
+  border-left: 2px solid #e0e0e0;
+}
+
+.example-sentence:last-child {
+  margin-bottom: 0;
+}
+
+/* Metaphor section */
+.metaphor {
+  padding: 0 0 1.125rem;
+  border-top: 1px solid #f0f0f0;
+  margin-top: 0.25rem;
+  padding-top: 0.75rem;
+}
+
+.metaphor-sentence {
+  color: #666;
+  font-size: 0.875rem;
+  font-style: italic;
+  line-height: 1.6;
+  padding-left: 0.75rem;
+  border-left: 2px solid #ccc;
+}
+
 /* Empty state */
 .empty-state {
   text-align: center;

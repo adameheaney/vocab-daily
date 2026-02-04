@@ -31,7 +31,9 @@ function selectWeeklyWords(allWords, count) {
     selected.push({
       word: allWords[index][0],
       pos: entry.pos,
-      definition: entry.definition
+      definition: entry.definition,
+      examples: entry.examples || [],
+      metaphor: entry.metaphor || null
     })
   }
 
