@@ -23,7 +23,7 @@ function selectWeeklyWords(allWords, count) {
   for (let i = 0; i < count; i++) {
     let index
     do {
-      index = Math.floor(seededRandom(seed + i) * allWords.length)
+      index = Math.floor(seededRandom(seed + i * 1000) * allWords.length)
     } while (used.has(index))
 
     used.add(index)
