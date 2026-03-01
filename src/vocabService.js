@@ -1,21 +1,33 @@
+const MILLIS_PER_DAY = 86400000
+
 // Seeded random number generator
 function seededRandom(seed) {
   const x = Math.sin(seed++) * 10000
   return x - Math.floor(x)
 }
 
-// Get ISO week number for a date
-function getWeekNumber(date) {
-  const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()))
-  d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay() || 7))
-  const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1))
-  return Math.ceil(((d - yearStart) / 86400000 + 1) / 7)
-}
-
-// Select words based on current week
+// Select words based on current week (changes Saturday night Eastern Time)
 function selectWeeklyWords(allWords, count) {
-  const today = new Date()
-  const seed = today.getFullYear() * 100 + getWeekNumber(today)
+  const now = new Date()
+  // Get date parts in Eastern Time (handles both EST UTC-5 and EDT UTC-4)
+  const etParts = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'America/New_York',
+    year: 'numeric',
+    month: 'numeric',
+    day: 'numeric',
+    weekday: 'long'
+  }).formatToParts(now)
+  const year = Number(etParts.find(p => p.type === 'year').value)
+  const month = Number(etParts.find(p => p.type === 'month').value) - 1
+  const day = Number(etParts.find(p => p.type === 'day').value)
+  const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+  const dayOfWeek = weekdays.indexOf(etParts.find(p => p.type === 'weekday').value)
+  // Find the Sunday that started this week in Eastern Time
+  // (negative days are handled correctly by Date.UTC)
+  const weekStart = new Date(Date.UTC(year, month, day - dayOfWeek))
+  const startOfYear = new Date(Date.UTC(weekStart.getUTCFullYear(), 0, 1))
+  const seed = weekStart.getUTCFullYear() * 1000 +
+    Math.floor((weekStart - startOfYear) / MILLIS_PER_DAY)
 
   const selected = []
   const used = new Set()
